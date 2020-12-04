@@ -6,32 +6,8 @@ inputs:
     required: true
     default: 'app'
 
-  fetch-depth:
-    description: 'fetch depth'
-    default: '0'
-
-#outputs:
-#  random-number: 
-#    description: "Random number"
-#    value: ${{ steps.random-number-generator.outputs.random-id }}
-
 runs:
-  using: "composite"
-  steps: 
-    - name: Checkout the latest code
-      uses: actions/checkout@v2
-      with:
-        fetch-depth: ${{ intpus.fetch-depth }}
-
-    - name: Set up Python 3.6
-      uses: actions/setup-python@v2
-      with:
-        python-version: 3.6
-
-    - name: Install django-migration-checker
-      run: |
-        python -m pip install --upgrade pip
-        pip install git+git://github.com/Falldog/django-migration-checker
-
-    - name: Run migration checker
-      run: django-find-conflicts ${{ inputs.app-path }}
+  using: docker
+  image: Dockerfile
+  env: 
+    APP_PATH: ${{ inputs.app-path }}
