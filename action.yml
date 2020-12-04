@@ -12,6 +12,6 @@ inputs:
 
 runs:
   using: docker
-  image: hardcoretech/django-migration-checker:latest
+  image: docker://hardcoretech/django-migration-checker:latest
   args: 
     - ${{ inputs.app-path }}
