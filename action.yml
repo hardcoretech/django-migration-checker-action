@@ -1,5 +1,9 @@
 name: 'Django Migration Checker'
 description: 'check Django app migrations dependency tree'
+branding:
+  icon: 'play'  
+  color: 'blue'
+
 inputs:
   app-path:
     description: 'app folder path'
