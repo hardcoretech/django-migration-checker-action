@@ -4,4 +4,4 @@ ENV APP_PATH=app
 RUN python -m pip install --upgrade pip
 RUN pip install git+git://github.com/Falldog/django-migration-checker
 
-ENTRYPOINT django-find-conflicts $APP_PATH
+ENTRYPOINT /bin/sh -c "pwd && ls -al && django-find-conflicts $APP_PATH"
