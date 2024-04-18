@@ -12,14 +12,20 @@ inputs:
 
   docker-image:
     description: 'docker image name'
-    default: 'docker://hardcoretech/django-migration-checker'
+    default: 'hardcoretech/django-migration-checker'
 
   docker-image-tag:
     description: 'docker image tag of django-migration-checker'
     default: 'latest'
 
 runs:
-  using: docker
-  image: "${{ inputs.docker-image }}:${{ inputs.docker-image-tag }}"
-  args:
-    - ${{ inputs.app-path }}
+  using: "composite"
+  steps:
+    - name: Run
+      shell: bash
+      run: |
+        docker run --rm \
+           --volume ${PWD}:/workspace \
+           --workdir /workspace \
+           ${{ inputs.docker-image }}:${{ inputs.docker-image-tag }} \
+           ${{ inputs.app-path }}
