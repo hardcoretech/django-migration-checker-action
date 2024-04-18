@@ -37,8 +37,11 @@ jobs:
 #### parameter
 inputs
 * `app-path`: django app folder path. after `action/checkout`, the working dir would be repository root.
+  * default: `app`
 * `docker-image`: docker image name. you are able to change the image hub to private source.
+  * default: `docker://hardcoretech/django-migration-checker`
 * `docker-image-tag` docker image tag, it should represent version of `django-migration-checker` (python package)
+  * default: `latest`
 
 
 ## Develop
