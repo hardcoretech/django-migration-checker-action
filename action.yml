@@ -10,8 +10,16 @@ inputs:
     required: true
     default: 'app'
 
+  docker-image:
+    description: 'docker image name'
+    default: 'docker://hardcoretech/django-migration-checker'
+
+  docker-image-tag:
+    description: 'docker image tag of django-migration-checker'
+    default: 'latest'
+
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
-  args: 
+  using: docker
+  image: "${{ docker-image }}:${{ docker-image-tag }}"
+  args:
     - ${{ inputs.app-path }}

@@ -1,5 +1,5 @@
 FROM python:3.11.9-alpine
-ARG VERSION="0.8.0"
+ARG VERSION=""
 
 RUN apk add --no-cache git
 RUN python -m pip install --no-cache-dir --upgrade pip

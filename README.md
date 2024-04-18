@@ -28,14 +28,28 @@ jobs:
           fetch-depth: 1
 
       - name: Django Migration Checker
-        uses: hardcoretech/django-migration-checker-action@v1
+        uses: hardcoretech/django-migration-checker-action@v2
         with:
           app-path: app
+          docker-image-tag: 0.8.0
 ```
 
 #### parameter
 inputs
 * `app-path`: django app folder path. after `action/checkout`, the working dir would be repository root.
+* `docker-image`: docker image name. you are able to change the image hub to private source.
+* `docker-image-tag` docker image tag, it should represent version of `django-migration-checker` (python package)
+
+
+## Develop
+Why do we need to maintain docker image rather than build it directly in github action?
+* Provide the capability for CI environment to use the image to do the checking as well.
+
+If django-migration-checker package upgraded, need to update and push docker image. Doesn't need to release new github action version. And the version should match with python package version.
+* `make push-to-aws-ecr DMC_VERSION=<new version> IMAGE_TAG=<new version> AWS_ACCOUNT_ID=<aws account id>`
+* `make push-to-docker-hub DMC_VERSION=<new version> IMAGE_TAG=<new version>`
+
+Only upgrade the version of github action when you change the content of `action.yml`.
 
 
 ## Resource
