@@ -20,6 +20,6 @@ inputs:
 
 runs:
   using: docker
-  image: "${{ docker-image }}:${{ docker-image-tag }}"
+  image: "${{ inputs.docker-image }}:${{ inputs.docker-image-tag }}"
   args:
     - ${{ inputs.app-path }}
