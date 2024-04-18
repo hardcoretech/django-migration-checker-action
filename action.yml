@@ -11,7 +11,7 @@ inputs:
     default: 'app'
 
 runs:
-  using: docker
-  image: docker://hardcoretech/django-migration-checker:latest
+  using: 'docker'
+  image: 'Dockerfile'
   args: 
     - ${{ inputs.app-path }}
